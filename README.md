@@ -4,7 +4,7 @@ This project implements a 32-bit RAM-based FIFO in Verilog with integrated Hammi
 - Hamming SECDED ECC integration for error detection and correction.
 - Separate ECC Encoder and ECC Decoder modules.
 - Supports:
-Single-bit error correction → Raises sec_err flag.
-Double-bit error detection → Raises ded_err flag.
+-- Single-bit error correction → Raises sec_err flag.
+-- Double-bit error detection → Raises ded_err flag.
 - FIFO control logic implemented using read/write pointers with wrap-around addressing.
 - Synthesizable and verified using Xilinx Vivado.
