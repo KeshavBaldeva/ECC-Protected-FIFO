@@ -19,7 +19,7 @@ This project implements a 32-bit RAM-based FIFO in Verilog with integrated Hammi
 Input data (din) → ECC Encoder → Generates 7-bit ECC → Store (32-bit data + 7-bit ECC = 39 bits) into FIFO memory.
 
 **Read Path**  
-Fetch 39-bit word from memory → ECC Decoder → Output Register
+Fetch 39-bit word from memory → ECC Decoder → Output Register.
 Corrects single-bit errors and raises sec_err.  
 Detects double-bit errors and raises ded_err.  
 Outputs corrected data on dout.
