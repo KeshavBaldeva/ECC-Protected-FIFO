@@ -1,5 +1,8 @@
-# ECC-Protected-FIFO
+<img width="4460" height="1776" alt="Block Diagram" src="https://github.com/user-attachments/assets/fe14cabf-89a8-42c4-ac56-113d2a9905a1" /># ECC-Protected-FIFO
 This project implements a 32-bit RAM-based FIFO in Verilog with integrated Hamming SECDED (Single Error Correction, Double Error Detection) Error-Correcting Code (ECC). It ensures reliable and fault-tolerant data storage by detecting and correcting memory errors on-the-fly.
+
+## Control Unit Internal Structure
+<img width="4460" height="1776" alt="Block Diagram" src="https://github.com/user-attachments/assets/de525a3d-2f12-4755-bc9e-0fdede546fc9" />
 
 ## Features
 - Hamming SECDED ECC integration for error detection and correction.
