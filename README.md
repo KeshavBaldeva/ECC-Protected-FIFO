@@ -20,10 +20,10 @@ It automatically corrects single-bit errors (SEC) and detects uncorrectable doub
 
 ## 🔹Data Flow
 
-***Write Path**  
+**Write Path**  
 Input data (din) → ECC Encoder → Generates 7-bit ECC → Store (32-bit data + 7-bit ECC = 39 bits) into FIFO memory.
 
-***Read Path**  
+**Read Path**  
 Fetch 39-bit word from memory → ECC Decoder → Output Register.
 
 ## 🔹Verification
