@@ -6,16 +6,16 @@ It automatically corrects single-bit errors (SEC) and detects uncorrectable doub
 <img width="4460" height="1776" alt="Block Diagram" src="https://github.com/user-attachments/assets/de525a3d-2f12-4755-bc9e-0fdede546fc9" />
 
 ## 🔹Features
-- Hamming SECDED ECC integration for error detection and correction.
-- Separate ECC Encoder and ECC Decoder modules.
-- FIFO control logic implemented using read/write pointers with wrap-around addressing.
-- Error Handling:
-1. Single-bit error correction → Raises sec_err flag.
-2. Double-bit error detection → Raises ded_err flag.
-- Interface: Synchronous, single-clock.
-- Latency:
-   Write: 1 cycle.
-   Read: 2 cycles (from rd_en assertion to dout_valid assertion).
+* Hamming SECDED ECC integration for error detection and correction.
+* Separate ECC Encoder and ECC Decoder modules.
+* FIFO control logic implemented using read/write pointers with wrap-around addressing.
+* Error Handling:
+- Single-bit error correction → Raises sec_err flag.
+- Double-bit error detection → Raises ded_err flag.
+* Interface: Synchronous, single-clock.
+* Latency:
+- Write: 1 cycle.
+- Read: 2 cycles (from rd_en assertion to dout_valid assertion).
 
 
 ## 🔹 Data Flow
