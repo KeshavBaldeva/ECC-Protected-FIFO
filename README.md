@@ -15,18 +15,20 @@ It automatically corrects single-bit errors (SEC) and detects uncorrectable doub
 * Interface: Synchronous, single-clock.
 * Latency:
   - Write: 1 cycle.
-  - Read: 2 cycles (from rd_en assertion to dout_valid assertion).
+  - Read : 2 cycles (from rd_en assertion to dout_valid assertion).
 
 
-## 🔹 Data Flow
+## 🔹Data Flow
 
-**Write Path**  
+***Write Path**  
 Input data (din) → ECC Encoder → Generates 7-bit ECC → Store (32-bit data + 7-bit ECC = 39 bits) into FIFO memory.
 
-**Read Path**  
+***Read Path**  
 Fetch 39-bit word from memory → ECC Decoder → Output Register.
 
-Corrects single-bit errors and raises sec_err.  
-Detects double-bit errors and raises ded_err.  
-Outputs corrected data on dout.
+## 🔹Verification
+The design is verified with two testbenches:
+1. tb_FIFO_with_ECC.v: A simpler stimulus-driven testbench that also injects 1-bit and 2-bit errors directly into the Verilog memory array  and monitors the output.
+2. tb_FIFO_complex.v : A self-checking testbench with a golden model scoreboard.
+
 
