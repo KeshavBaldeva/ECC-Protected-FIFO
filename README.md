@@ -10,12 +10,12 @@ It automatically corrects single-bit errors (SEC) and detects uncorrectable doub
 * Separate ECC Encoder and ECC Decoder modules.
 * FIFO control logic implemented using read/write pointers with wrap-around addressing.
 * Error Handling:
-  -Single-bit error correction → Raises sec_err flag.
-  -Double-bit error detection → Raises ded_err flag.
+  - Single-bit error correction → Raises sec_err flag.
+  - Double-bit error detection → Raises ded_err flag.
 * Interface: Synchronous, single-clock.
 * Latency:
-  -Write: 1 cycle.
-  -Read: 2 cycles (from rd_en assertion to dout_valid assertion).
+  - Write: 1 cycle.
+  - Read: 2 cycles (from rd_en assertion to dout_valid assertion).
 
 
 ## 🔹 Data Flow
