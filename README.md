@@ -1,17 +1,22 @@
 # ECC-Protected-FIFO
-This project implements a 32-bit RAM-based FIFO in Verilog with integrated Hamming SECDED (Single Error Correction, Double Error Detection) Error-Correcting Code (ECC). It ensures reliable and fault-tolerant data storage by detecting and correcting memory errors on-the-fly.
+This project implements a 16-entry, 32-bit synchronous FIFO in Verilog with integrated (39, 32) Hamming code for fault-tolerant data storage.\
+It automatically corrects single-bit errors (SEC) and detects uncorrectable double-bit errors (DED) on all read operations, making it suitable for systems where memory corruption (e.g., soft errors) is a concern.
 
-## 🔹 Block Diagram
+## 🔹Block Diagram
 <img width="4460" height="1776" alt="Block Diagram" src="https://github.com/user-attachments/assets/de525a3d-2f12-4755-bc9e-0fdede546fc9" />
 
-## 🔹 Features
+## 🔹Features
 - Hamming SECDED ECC integration for error detection and correction.
 - Separate ECC Encoder and ECC Decoder modules.
-- Supports:
+- FIFO control logic implemented using read/write pointers with wrap-around addressing.
+- Error Handling:
 1. Single-bit error correction → Raises sec_err flag.
 2. Double-bit error detection → Raises ded_err flag.
-- FIFO control logic implemented using read/write pointers with wrap-around addressing.
-- Synthesizable and verified using Xilinx Vivado.
+- Interface: Synchronous, single-clock.
+- Latency:
+   Write: 1 cycle.
+   Read: 2 cycles (from rd_en assertion to dout_valid assertion).
+
 
 ## 🔹 Data Flow
 
