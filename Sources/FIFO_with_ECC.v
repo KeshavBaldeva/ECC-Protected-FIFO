@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 14.08.2025 16:02:08
+// Create Date: 18.08.2025 16:02:08
 // Design Name: 
 // Module Name: FIFO_with_ECC
 // Project Name: 
@@ -20,27 +20,27 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-// Top-level FIFO with ECC Hamming SECDED (32-bit data, 7-bit ECC)
+// Top level module for FIFO
 module FIFO_with_ECC (
-  input  wire        clk,
-  input  wire        rst_n,
+  input  wire clk,
+  input  wire rst_n,
 
   // External write
-  input  wire        wr_en,
-  input  wire [31:0] din,
-  output wire        full,
+  input  wire wr_en,
+  input  wire [31:0]din,
+  output wire full,
 
   // External read
-  input  wire        rd_en,
-  output reg  [31:0] dout,
-  output reg         dout_valid,
-  output wire        empty,
+  input  wire rd_en,
+  output reg [31:0]dout,
+  output reg dout_valid,
+  output wire empty,
 
   // Error flags
-  output reg         sec_err,
-  output reg         ded_err
+  output reg sec_err,
+  output reg ded_err
 );
-  // ---------------- Control ----------------
+  // ------------ Control -----------
   wire mem_wr_en, mem_rd_en;
   wire [3:0] mem_wr_addr, mem_rd_addr;
 
@@ -57,7 +57,7 @@ module FIFO_with_ECC (
     .mem_rd_addr(mem_rd_addr)
   );
 
-  // ---------------- ECC encode (write) ----------------
+  // --------- ECC encode ---------
   wire [6:0] ecc_w;
   ECC_encode32 u_enc (
     .d_in(din),
@@ -66,7 +66,7 @@ module FIFO_with_ECC (
 
   wire [38:0] wr_word = {din, ecc_w};
 
-  // ---------------- Raw memory ----------------
+  // --------- Memory --------
   wire [38:0] rd_word;
   Memory_39x16 u_mem (
     .clk(clk),
@@ -78,7 +78,7 @@ module FIFO_with_ECC (
     .rd_word(rd_word)
   );
 
-  // ---------------- ECC decode (read) ----------------
+  // ---------- ECC decode ---------
   wire [31:0] d_corr;
   wire sec_w, ded_w;
   ECC_decode32 u_dec (
@@ -89,32 +89,40 @@ module FIFO_with_ECC (
     .ded_err(ded_w)
   );
 
-  // ---------------- Output register ----------------
+  // --------- Output register ----------
   reg rd_fire_d;
-  always @(posedge clk or negedge rst_n) begin
+  always @(posedge clk or negedge rst_n) 
+   begin
     if (!rst_n)
       rd_fire_d <= 1'b0;
     else
       rd_fire_d <= mem_rd_en;
-  end
+   end
 
-  always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
+  always @(posedge clk or negedge rst_n) 
+   begin
+    if (!rst_n)
+     begin
       dout       <= 32'd0;
       dout_valid <= 1'b0;
       sec_err    <= 1'b0;
       ded_err    <= 1'b0;
-    end else begin
+     end 
+    else
+     begin
       dout_valid <= rd_fire_d;
-      if (rd_fire_d) begin
+      if (rd_fire_d)
+       begin
         dout    <= d_corr;
         sec_err <= sec_w;
         ded_err <= ded_w;
-      end else begin
+       end
+      else
+       begin
         sec_err <= 1'b0;
         ded_err <= 1'b0;
-      end
-    end
-  end
+       end
+     end
+   end
 endmodule
 
