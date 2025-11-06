@@ -29,6 +29,6 @@ Fetch 39-bit word from memory → ECC Decoder → Output Register.
 ## 🔹Verification
 The design is verified with two testbenches:
 1. tb_FIFO_with_ECC.v: A simpler stimulus-driven testbench that also injects 1-bit and 2-bit errors directly into the Verilog memory array  and monitors the output.
-2. tb_FIFO_complex.v : A self-checking testbench with a golden model scoreboard.
+2. tb_FIFO_complex.v : A self-checking testbench with a Refrence model and scoreboard.
 
 
